@@ -1,0 +1,15 @@
+{
+  "name": "zupi",
+  "version": "0.0.1",
+  "description": "Tema do Acervo Zupi",
+  "main": "index.js",
+  "scripts": {
+    "css-minify": "cleancss --level 1 --format breaksWith=lf --source-map --source-map-inline-sources --output style.min.css style.css",
+    "build": "npm run css-minify"
+  },
+  "author": "mateuswetah",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-css-cli": "^4.3.0"
+  }
+}

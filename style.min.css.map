@@ -1,0 +1,1 @@
+{"version":3,"sources":["style.css"],"names":[],"mappings":"AAUA,gBADA,kBAEI,YAAa","sourcesContent":["/**\n * Theme Name: ZUPI\n * Description: Tema do Acervo Zupi\n * Author: wetah\n * Template: blocksy\n * Text Domain: zupi\n * Version: 0.0.1\n */\n\n.theme-items-list,\n.tainacan-modal {\n    --boxShadow: none;\n}"]}
