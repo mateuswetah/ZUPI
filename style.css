@@ -7,7 +7,6 @@
  * Version: 0.0.1
  */
 
-.theme-items-list,
-.tainacan-modal {
-    --boxShadow: none;
-}
+/* Styles related to the Tainacan plugin */
+@import url('./css/tainacan-items-archive.css');
+@import url('./css/tainacan-items-single.css');

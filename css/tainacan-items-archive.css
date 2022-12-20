@@ -1,0 +1,116 @@
+.tainacan-modal,
+.theme-items-list {
+    --boxShadow: none;
+    --backgroundColor: var(--background-color, #ffffff);
+	--tainacan-filter-menu-width-theme: 364px;
+}
+
+@media only screen and (min-width: 768px) {
+	.tainacan-modal,
+	.theme-items-list {
+		--tainacan-filter-menu-width-theme: 280px;
+	}
+	/* Adding border to filters list */
+	.theme-items-list #filters-items-list {
+		padding: 24px;
+	}
+}
+@media only screen and (max-width: 1024px) {
+	#tainacanFiltersButton,
+	#tainacanFiltersButton .is-hidden-touch {
+		display: inline-block !important;
+		visibility: visible !important;
+	}	
+}
+
+/* We don't use blocksy grid */
+.theme-items-list:not(.is-fullscreen) {
+    display: flex !important;
+}
+
+/* Smaller padding for this elements */
+.theme-items-list .search-control .search-control-item.search-control-item--filters-button .button.is-white,
+.theme-items-list .search-control .search-control-item.search-control-item--displayed-metadata-dropdown .dropdown-trigger .button.is-white {
+	padding-left: 0px !important;
+}
+
+/* The padding is in the page */
+.search-control {
+	padding-top: 5px !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	padding-bottom: 6px !important;
+	display: grid !important;
+	grid-template-columns: 235px auto !important;
+	grid-template-rows: repeat(auto-fill, 35px) !important;
+}
+
+/* Search input should have similar width than filters panel */
+.search-control .search-control-item .search-area {
+	max-width: 235px !important;
+	min-width: 235px !important;
+}
+
+
+/* Search control has less spacing */
+.theme-items-list .search-control[role="region"] {
+	justify-content: flex-start !important;
+}
+.theme-items-list .search-control .search-control-item {
+	margin-right: 0px !important;
+	margin-bottom: 5px !important;
+	grid-column-start: 1;
+}
+.theme-items-list .search-control .search-control-item--search {
+	order: 1;
+}
+
+
+/* Avoids overlapping metadata name */
+#tainacanSortByDropdown .dropdown-trigger button.button {
+	justify-content: flex-start;
+}
+#tainacanSortByDropdown .dropdown-trigger button.button>span {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	max-width: calc(100% - 3rem);
+}
+
+/* No need for filters button on desktop */
+#tainacanFiltersButton {
+	display: none;
+	visibility: hidden;
+}
+
+/* No need for Full Screen button */
+#tainacanFullScreenViewMode:empty {
+	display: none;
+	visibility: hidden;
+}
+
+@media only screen and (max-width: 767px) {
+	.theme-items-list:not(.is-fullscreen) .search-control {
+		display: flex !important;
+		justify-content: center !important;
+	}
+	.theme-items-list:not(.is-fullscreen) .search-control .search-control-item {
+		margin-right: 20px !important;
+		margin-left: 20px !important;
+	}
+	.faceted-search-hook-search-control-before {
+		padding-left: 0;
+		text-align: center;
+	}
+	.tainacan-items-list-heading,
+	.tainacan-collections-links {
+		justify-content: center;
+	}
+	#tainacanSortByDropdown .dropdown-trigger button.button>span {
+		max-width: 100%;
+	}
+	.tainacan-modal #filters-modal .modal-content,
+	.theme-items-list #filters-modal .modal-content {
+		padding: var(--tainacan-container-padding) !important;
+	}
+}
