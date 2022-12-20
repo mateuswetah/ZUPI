@@ -1,3 +1,24 @@
+.tainacan-collections-links {
+	font-size: 0.8125rem;
+	padding: 0.45rem 1rem 1.5rem 0rem;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+.tainacan-collections-links li {
+	padding-right: 0.75rem;
+	margin-right: 0.75rem;
+}
+.tainacan-collections-links a:not(:hover) {
+	text-decoration: none;
+}
+.tainacan-collections-links li:not(:last-of-type) {
+	border-right: 1px solid #ddd;
+}
+
 .tainacan-modal,
 .theme-items-list {
     --boxShadow: none;
@@ -32,6 +53,14 @@
 .theme-items-list .search-control .search-control-item.search-control-item--filters-button .button.is-white,
 .theme-items-list .search-control .search-control-item.search-control-item--displayed-metadata-dropdown .dropdown-trigger .button.is-white {
 	padding-left: 0px !important;
+}
+
+/* Faceted Search Hook to add collection links and page title */
+.faceted-search-hook-search-control-before {
+	grid-column-start: 2;
+	grid-row-start: 1;
+	padding-left: 42px;
+	grid-row-end: 12;
 }
 
 /* The padding is in the page */
