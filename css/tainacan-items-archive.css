@@ -6,12 +6,13 @@
 	padding-top: 0;
 	padding-bottom: 0;
 }
-.tainacan-collection-header__box .hero-section {
+.tainacan-collection-header__box .hero-section,
+.tainacan-collection-header__box p:empty {
 	margin-bottom: 0px;
 }
 .tainacan-collections-links {
 	font-size: 0.8125rem;
-	padding: 0rem 1rem 1.5rem 0rem;
+	padding: 0.35rem 1rem .5rem 0rem;
 	margin-bottom: 0px;
 	list-style: none;
 	display: flex;
@@ -30,12 +31,16 @@
 .tainacan-collections-links li:not(:last-of-type) {
 	border-right: 1px solid #ddd;
 }
+.tainacan-items-list-heading p:empty {
+	margin-bottom: 0px;
+}
 
 .tainacan-modal,
 .theme-items-list {
     --boxShadow: none;
     --backgroundColor: var(--background-color, #ffffff);
 	--tainacan-filter-menu-width-theme: 364px;
+	--tainacan-base-font-size: 1.125rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -99,7 +104,7 @@
 	padding-bottom: 6px !important;
 	display: grid !important;
 	grid-template-columns: 268px auto !important;
-	grid-template-rows: repeat(auto-fill, 35px) !important;
+	grid-template-rows: repeat(auto-fill, 50px) !important;
 }
 
 /* Search input should have similar width than filters panel */
@@ -115,7 +120,8 @@
 }
 .theme-items-list .search-control .search-control-item {
 	margin-right: 0px !important;
-	margin-bottom: 5px !important;
+	margin-bottom: 10px !important;
+	margin-top: 4px;
 	grid-column-start: 1;
 }
 .theme-items-list .search-control .search-control-item--search {
