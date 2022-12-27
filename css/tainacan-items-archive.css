@@ -11,7 +11,8 @@
 }
 .tainacan-collections-links {
 	font-size: 0.8125rem;
-	padding: 0.45rem 1rem 1.5rem 0rem;
+	padding: 0rem 1rem 1.5rem 0rem;
+	margin-bottom: 0px;
 	list-style: none;
 	display: flex;
 	flex-wrap: wrap;
@@ -44,12 +45,17 @@
 	}
 	/* Adding border to filters list */
 	.theme-items-list #filters-modal .modal-content #filters-items-list {
-		padding: 0 1rem 1rem;
+		padding: 0 0 1rem;
 	}
     .tainacan-modal #filters-modal .modal-content,
 	.theme-items-list #filters-modal .modal-content {
         padding-top: 0px;
     }
+	/* Less side padding */
+	.theme-items-list .search-control {
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
 }
 @media only screen and (max-width: 1024px) {
 	#tainacanFiltersButton,
@@ -92,14 +98,14 @@
 	padding-right: 0 !important;
 	padding-bottom: 6px !important;
 	display: grid !important;
-	grid-template-columns: 235px auto !important;
+	grid-template-columns: 268px auto !important;
 	grid-template-rows: repeat(auto-fill, 35px) !important;
 }
 
 /* Search input should have similar width than filters panel */
 .search-control .search-control-item .search-area {
-	max-width: 235px !important;
-	min-width: 235px !important;
+	max-width: 268px !important;
+	min-width: 268px !important;
 }
 
 
@@ -125,7 +131,7 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-	max-width: calc(100% - 3rem);
+	max-width: calc(100% - 1rem);
 }
 
 /* No need for filters button on desktop */
@@ -138,6 +144,11 @@
 #tainacanFullScreenViewMode:empty {
 	display: none;
 	visibility: hidden;
+}
+
+/* Less margin to masonry container */
+.tainacan-masonry-container {
+	margin-left: 12px;
 }
 
 @media only screen and (max-width: 767px) {
