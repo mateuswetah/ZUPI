@@ -46,7 +46,7 @@
 @media only screen and (min-width: 768px) {
 	.tainacan-modal,
 	.theme-items-list {
-		--tainacan-filter-menu-width-theme: 280px;
+		--tainacan-filter-menu-width-theme: 210px;
 	}
 	/* Adding border to filters list */
 	.theme-items-list #filters-modal .modal-content #filters-items-list {
@@ -103,14 +103,14 @@
 	padding-right: 0 !important;
 	padding-bottom: 6px !important;
 	display: grid !important;
-	grid-template-columns: 268px auto !important;
-	grid-template-rows: repeat(auto-fill, 50px) !important;
+	grid-template-columns: 212px auto !important;
+	grid-template-rows: repeat(auto-fill, 42px) !important;
 }
 
 /* Search input should have similar width than filters panel */
 .search-control .search-control-item .search-area {
-	max-width: 268px !important;
-	min-width: 268px !important;
+	max-width: 212px !important;
+	min-width: 212px !important;
 }
 
 

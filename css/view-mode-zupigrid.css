@@ -1,0 +1,122 @@
+.tainacan-zupi-grid-container {
+    min-height: 50vh;
+    padding: 36px 0;
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, max(228px, 20%));
+    grid-gap: 42px;
+    justify-content: flex-start;
+    margin-top: 5px;
+    border-top: 1px solid var(--global--color-border, #cccccc);
+    list-style: none;
+    animation-name: appear;
+    animation-duration: 0.5s;
+}
+
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item {
+    margin: 0px;
+    display: block;
+    text-decoration: none !important;
+    width: 100%;
+}
+
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item.skeleton {
+    width: 100%;
+}
+
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail {
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    margin: 0;
+    display: block;
+    position: relative;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: calc(100% * (364 / 228));
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 0px;
+    object-fit: cover;
+    object-position: center;
+    width: 100% !important;
+    height: 100% !important;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail .skeleton {
+    position: absolute;
+    z-index: -1;
+    background-color: #e0e0e0;
+    bottom: 0;
+}
+
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail:hover {
+    background-color: #dbdbdb;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-title {
+    flex-shrink: 0;
+    padding: 0.6rem 0rem;
+    text-align: left;
+    position: relative;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-title h3 {
+    font-size: 1.125rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    font-weight: bold;
+    color: inherit;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-description p,
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item a:hover .metadata-description p,
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-description p:hover {
+    color: var(--paletteColor4, #000);
+    font-weight: normal !important;
+    text-decoration: none !important;
+    font-size: 0.8125rem !important;
+    line-height: normal;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-description h3 {
+    font-size: 0.875em;
+    display: none;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item a:not(:hover) {
+    color: var(--paletteColor4, #000);
+    text-decoration: none !important;
+}
+
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-title .slideshow-icon {
+    border: none;
+    background: none;
+    box-shadow: none;
+    color: var(--tainacan-info-color) !important; 
+    position: absolute;
+    right: 7px;
+    top: 9px;
+    transform: scale(0.0);
+    transition: transform 0.2s ease;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-title:hover .slideshow-icon,
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-title:focus .slideshow-icon {
+    transform: scale(1.0);
+}
+
+

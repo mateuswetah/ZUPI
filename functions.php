@@ -12,7 +12,7 @@ if (! defined('WP_DEBUG')) {
 }
 
 /** Child Theme version */
-const ZUPI_VERSION = '0.0.6';
+const ZUPI_VERSION = '0.0.7';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
@@ -74,3 +74,45 @@ function zupi_add_collections_links_to_archive_header() {
 	}
 }
 add_action( 'wp_body_open', 'zupi_add_collections_links_to_archive_header' );
+
+
+/* Registers Zupi Custom View Modes */
+function zupi_register_tainacan_view_modes() {
+	if ( function_exists( 'tainacan_register_view_mode' ) ) {
+
+		// Grid
+		tainacan_register_view_mode('zupigrid', array(
+			'label' => __( 'Cartões', 'zupi' ),
+			'description' => __( 'Uma grade de itens feita para a revista Zupi', 'zupi' ),
+			'icon' => '<span class="icon"><i class="tainacan-icon tainacan-icon-viewcards tainacan-icon-1-25em"></i></span>',
+			'dynamic_metadata' => false,
+			'template' => get_stylesheet_directory() . '/tainacan/view-mode-zupigrid.php'
+		));
+
+		// Grid 2
+		tainacan_register_view_mode('zupigrid2', array(
+			'label' => __( 'Fichas', 'zupi' ),
+			'description' => __( 'Uma grade de itens maior, feita para a revista Zupi', 'zupi' ),
+			'icon' => '<span class="icon"><i class="tainacan-icon tainacan-icon-viewrecords tainacan-icon-1-25em"></i></span>',
+			'dynamic_metadata' => false,
+			'template' => get_stylesheet_directory() . '/tainacan/view-mode-zupigrid.php'
+		));
+	}
+}
+add_action( 'after_setup_theme', 'zupi_register_tainacan_view_modes' );
+
+
+/* Builds navigation link for custom view modes */
+function get_item_link_for_navigation($item_url, $index) {
+		
+	if ( $_GET && isset($_GET['paged']) && isset($_GET['perpage']) ) {
+		$query = '';
+		$perpage = (int)$_GET['perpage'];
+		$paged = (int)$_GET['paged'];
+		$index = (int)$index;
+		$query .= '&pos=' . ( ($paged - 1) * $perpage + $index );
+		$query .= '&source_list=' . (is_tax() ? 'term' : 'collection');
+		return $item_url . '?' .  $_SERVER['QUERY_STRING'] . $query;
+	}
+	return $item_url;
+}

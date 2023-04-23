@@ -4,9 +4,12 @@
  * Author: wetah
  * Template: blocksy
  * Text Domain: zupi
- * Version: 0.0.6
+ * Version: 0.0.7
  */
 
 /* Styles related to the Tainacan plugin */
 @import url('./css/tainacan-items-archive.css');
 @import url('./css/tainacan-items-single.css');
+
+/* Styles related to Tainacan view modes */
+@import url('./css/view-mode-zupigrid.css');
