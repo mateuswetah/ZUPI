@@ -1,14 +1,5 @@
 .tainacan-collection-header__box {
-    margin-left: auto;
-    margin-right: auto;
-    width: var(--container-width);
-    max-width: var(--normal-container-max-width);
-	padding-top: 0;
-	padding-bottom: 0;
-}
-.tainacan-collection-header__box .hero-section,
-.tainacan-collection-header__box p:empty {
-	margin-bottom: 0px;
+    display: none;
 }
 .tainacan-collections-links {
 	font-size: 0.8125rem;
@@ -41,6 +32,7 @@
     --backgroundColor: var(--background-color, #ffffff);
 	--tainacan-filter-menu-width-theme: 364px;
 	--tainacan-base-font-size: 1.125rem;
+	--tainacan-input-border-color: #f2f2f2;
 }
 
 @media only screen and (min-width: 768px) {
@@ -54,12 +46,21 @@
 	}
     .tainacan-modal #filters-modal .modal-content,
 	.theme-items-list #filters-modal .modal-content {
-        padding-top: 0px;
+        padding-top: 0px !important;
+		padding-left: 5px !important;
+		max-width: calc(100% - 1rem) !important;
     }
 	/* Less side padding */
 	.theme-items-list .search-control {
 		padding-left: 0 !important;
 		padding-right: 0 !important;
+	}
+	.filter-tags-list {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.filter-tags-list .swiper-wrapper {
+		margin-bottom: 4px;
 	}
 }
 @media only screen and (max-width: 1024px) {
@@ -92,7 +93,7 @@
 .faceted-search-hook-search-control-before {
 	grid-column-start: 2;
 	grid-row-start: 1;
-	padding-left: 42px;
+	padding-left: 0px;
 	grid-row-end: 12;
 }
 
@@ -124,12 +125,24 @@
 	margin-top: 4px;
 	grid-column-start: 1;
 }
-.theme-items-list .search-control .search-control-item--search {
-	order: 1;
+
+.theme-items-list .search-control .search-control-item--search .search-area .tainacan-textual-search-input {
+	width: calc(100% - 1.5rem) !important;
 }
 
 
 /* Avoids overlapping metadata name */
+@media screen and (min-width: 1024px) {
+	.search-control-item--sorting-area .field.has-addons {
+		flex-wrap: wrap;
+	}
+	#tainacanSortByDropdown {
+		min-width: 100%;
+	}
+	.search-control-item--sorting-area .field.has-addons #tainacanSortByDropdown .dropdown-trigger button.button {
+		padding-left: 0px !important;
+	}
+}
 #tainacanSortByDropdown .dropdown-trigger button.button {
 	justify-content: flex-start;
 }
@@ -150,6 +163,15 @@
 #tainacanFullScreenViewMode:empty {
 	display: none;
 	visibility: hidden;
+}
+
+#tainacanViewModesSection {
+	display: none;
+	visibility: hidden;
+}
+
+.theme-items-list #items-list-area #items-list-results {
+	padding-top: 0px;
 }
 
 /* Less margin to masonry container */

@@ -1,0 +1,63 @@
+@media only screen and (min-width: 961px) {
+    .tainacan-item-single-page .tainacan-item-single {
+        grid-template-columns: auto auto 220px !important;
+        grid-template-areas: 'document metadata related' !important;
+    }
+    .tainacan-item-single-page .tainacan-item-section {
+        max-width: 40vw;
+    }
+    .tainacan-item-single-page .tainacan-item-single .tainacan-media-component {
+        --document-height: auto !important;
+    }
+   
+}
+.tainacan-item-single-page .tainacan-item-single .tainacan-media-component .tainacan-media-component__swiper-main li.swiper-slide {
+    padding: 0px 0px 2rem 0px;
+}
+.tainacan-item-single-page .tainacan-item-single .tainacan-media-component .tainacan-media-component__swiper-main li.swiper-slide:hover .swiper-button-next,
+.tainacan-item-single-page .tainacan-item-single .tainacan-media-component .tainacan-media-component__swiper-main li.swiper-slide:hover .swiper-button-prev {
+    opacity: 1.0;
+}
+.tainacan-item-single-page .tainacan-item-single .tainacan-media-component .tainacan-media-component__swiper-main .swiper-slide-content a:first-of-type,
+.tainacan-item-single-page .tainacan-item-single .tainacan-media-component .tainacan-media-component__swiper-main .swiper-slide-content p:first-of-type {
+    padding: 0px;
+}
+.tainacan-item-single-page .tainacan-item-single .tainacan-media-component .tainacan-media-component__swiper-main .swiper-button-next,
+.tainacan-item-single-page .tainacan-item-single .tainacan-media-component .tainacan-media-component__swiper-main .swiper-button-prev {
+    padding: 26px;
+    background: var(--paletteColor6);
+    border-radius: 100em;
+    box-shadow: 0 0 12px -10px #000;
+    opacity: 0.0;
+    transition: opacity 0.3s ease;
+}
+
+.post-navigation [class*="nav-item"]:hover {
+	background: var(--paletteColor5, #f5f5f5);
+}
+.post-navigation .nav-item-next {
+	padding-left: 1.5rem;
+}
+.post-navigation .nav-item-prev {
+	padding-right: 1.5rem;
+}
+.post-navigation {
+	grid-template-columns: max-content max-content !important;
+	justify-content: space-between;
+}
+
+.ct-related-posts .ct-related-posts-items {
+    --grid-template-columns: repeat(8, 1fr);
+}
+
+@media screen and (max-width: 1200px) {
+    .ct-related-posts .ct-related-posts-items {
+        --grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media screen and (max-width: 940px) {
+    .ct-related-posts .ct-related-posts-items {
+        --grid-template-columns: repeat(2, 1fr);
+    }
+}
+

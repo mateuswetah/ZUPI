@@ -1,9 +1,10 @@
 <?php
 	$is_in_grid_two = $request['view_mode'] === 'zupigrid2';
+	$is_in_grid_three = $request['view_mode'] === 'zupigrid3';
 ?>
 
 <?php if ( have_posts() ) : ?>
-	<ul class="tainacan-zupi-grid-container">
+	<ul class="tainacan-zupi-grid-container <?php echo $is_in_grid_two ? 'tainacan-zupi-grid-container--2' : ''; ?> <?php echo $is_in_grid_three ? 'tainacan-zupi-grid-container--3' : ''; ?>">
 
 		<?php $item_index = 0; while ( have_posts() ) : the_post(); ?>
 			
@@ -17,7 +18,7 @@
 						</div>
 					<?php else : ?>
 						<div class="zupi-grid-item-thumbnail">
-							<?php echo '<img alt="', esc_attr_e('Minatura da imagem do item', 'zupi'), '" src="', esc_url(get_stylesheet_directory_uri()), '/images/thumbnail_placeholder.png">'?>
+							<?php echo '<img alt="', esc_attr_e('Imagem não definida', 'zupi'), '">'?>
 							<div class="skeleton"></div> 
 						</div>
 					<?php endif; ?>

@@ -12,7 +12,7 @@ if (! defined('WP_DEBUG')) {
 }
 
 /** Child Theme version */
-const ZUPI_VERSION = '0.0.7';
+const ZUPI_VERSION = '0.0.20';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
@@ -82,7 +82,7 @@ function zupi_register_tainacan_view_modes() {
 
 		// Grid
 		tainacan_register_view_mode('zupigrid', array(
-			'label' => __( 'Cartões', 'zupi' ),
+			'label' => __( 'Fichas quadradas', 'zupi' ),
 			'description' => __( 'Uma grade de itens feita para a revista Zupi', 'zupi' ),
 			'icon' => '<span class="icon"><i class="tainacan-icon tainacan-icon-viewcards tainacan-icon-1-25em"></i></span>',
 			'dynamic_metadata' => false,
@@ -91,8 +91,17 @@ function zupi_register_tainacan_view_modes() {
 
 		// Grid 2
 		tainacan_register_view_mode('zupigrid2', array(
-			'label' => __( 'Fichas', 'zupi' ),
-			'description' => __( 'Uma grade de itens maior, feita para a revista Zupi', 'zupi' ),
+			'label' => __( 'Fichas pequenas', 'zupi' ),
+			'description' => __( 'Uma grade de itens menores, feita para a revista Zupi', 'zupi' ),
+			'icon' => '<span class="icon"><i class="tainacan-icon tainacan-icon-viewminiature tainacan-icon-1-25em"></i></span>',
+			'dynamic_metadata' => false,
+			'template' => get_stylesheet_directory() . '/tainacan/view-mode-zupigrid.php'
+		));
+
+		// Grid 3
+		tainacan_register_view_mode('zupigrid3', array(
+			'label' => __( 'Fichas retangulares', 'zupi' ),
+			'description' => __( 'Uma grade de itens maior, feita para os eventos revista Zupi', 'zupi' ),
 			'icon' => '<span class="icon"><i class="tainacan-icon tainacan-icon-viewrecords tainacan-icon-1-25em"></i></span>',
 			'dynamic_metadata' => false,
 			'template' => get_stylesheet_directory() . '/tainacan/view-mode-zupigrid.php'

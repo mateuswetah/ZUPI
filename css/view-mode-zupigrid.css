@@ -3,14 +3,22 @@
     padding: 36px 0;
     display: -ms-grid;
     display: grid;
-    grid-template-columns: repeat(auto-fill, max(228px, 20%));
+    grid-template-columns: repeat(auto-fill, max(389px, 25%));
     grid-gap: 42px;
     justify-content: flex-start;
     margin-top: 5px;
-    border-top: 1px solid var(--global--color-border, #cccccc);
+    border-top: 2px solid #cecdcd;
     list-style: none;
     animation-name: appear;
     animation-duration: 0.5s;
+}
+.tainacan-zupi-grid-container--2.tainacan-zupi-grid-container {
+    grid-template-columns: repeat(auto-fill, max(182px, 10%));
+    grid-gap: 32px;
+}
+.tainacan-zupi-grid-container--3.tainacan-zupi-grid-container {
+    grid-template-columns: repeat(auto-fill, max(280px, 20%));
+    grid-gap: 32px;
 }
 
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item {
@@ -31,12 +39,16 @@
     margin: 0;
     display: block;
     position: relative;
+    overflow: hidden;
 }
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail:before {
     display: block;
     content: "";
     width: 100%;
-    padding-top: calc(100% * (364 / 228));
+    padding-top: 100%;
+}
+.tainacan-zupi-grid-container--3.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail:before {
+    padding-top: calc(100% * (400 / 280));
 }
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail img {
     position: absolute;
@@ -49,6 +61,15 @@
     object-position: center;
     width: 100% !important;
     height: 100% !important;
+    transition: height 0.2s ease, width 0.2s ease;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail img:not([src]) {
+    text-align: center;
+    font-size: 1rem;
+    font-style: italic;
+    color: #555;
+    background: var(--paletteColor5);
+    padding: 30% 2rem;
 }
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail .skeleton {
     position: absolute;
@@ -59,6 +80,10 @@
 
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail:hover {
     background-color: #dbdbdb;
+}
+.tainacan-zupi-grid-container .tainacan-zupi-grid-item .zupi-grid-item-thumbnail:hover img {
+    width: 105% !important;
+    height: 105% !important;
 }
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-title {
     flex-shrink: 0;
