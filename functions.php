@@ -12,7 +12,7 @@ if (! defined('WP_DEBUG')) {
 }
 
 /** Child Theme version */
-const ZUPI_VERSION = '0.0.20';
+const ZUPI_VERSION = '0.0.36';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
@@ -110,7 +110,6 @@ function zupi_register_tainacan_view_modes() {
 }
 add_action( 'after_setup_theme', 'zupi_register_tainacan_view_modes' );
 
-
 /* Builds navigation link for custom view modes */
 function get_item_link_for_navigation($item_url, $index) {
 		
@@ -125,3 +124,153 @@ function get_item_link_for_navigation($item_url, $index) {
 	}
 	return $item_url;
 }
+
+/* Custom item gallery for the Artists Collection */
+function zupi_artists_media_gallery() {
+
+	$collections_where_relationship_metadata_appear_as_gallery = [ 267, 5 ];
+	$related_collections_that_should_have_media_gallery = [ 267, 20 ];
+	$max_items_per_gallery = 4;
+	
+	if ( in_array( tainacan_get_collection_id(), $collections_where_relationship_metadata_appear_as_gallery ) ) {
+
+		// Gets the current Item
+		$item = tainacan_get_item();
+		if ( !$item )
+			return;
+		
+		// Then fetches related ones
+		$related_items = $item->get_related_items([]);
+		if ( !count($related_items) )
+			return;
+
+		echo '<section class="tainacan-item-section tainacan-item-section--document">';
+
+		foreach($related_items as $collection_id => $related_group) {
+		
+			if (
+				in_array($related_group['collection_id'], $related_collections_that_should_have_media_gallery) &&
+				isset($related_group['items']) &&
+				isset($related_group['total_items']) &&
+				$related_group['total_items']
+			) {
+				$media_items_thumbnails = []; // Obter miniaturas dos itens
+				$media_items_main = []; // Obter documentos dos itens
+				$block_id = uniqid();
+
+				foreach ( array_slice( $related_group['items'], 0, $max_items_per_gallery) as $related_item ) {
+					if ( isset($related_item['thumbnail']) && isset($related_item['thumbnail']['tainacan-medium']) ) {
+						
+						$media_items_main[] = 
+							tainacan_get_the_media_component_slide(array(
+								'media_content' => tainacan_get_the_document($related_item['id']),
+								'media_content_full' => (
+									$related_item['document_type'] === 'attachment' ?
+										tainacan_get_the_document($related_item['id'], 'full') :
+										sprintf('<div class="attachment-without-image">%s</div>', tainacan_get_the_document($related_item['id'], 'full'))
+								),
+								'media_title' => $related_item['title'],
+								'media_description' => $related_item['description'],
+								'class_slide_metadata' => 'hide-name hide-description hide-caption'
+							));
+
+						$media_items_thumbnails[] = 
+							tainacan_get_the_media_component_slide(array(
+								'media_content' => get_the_post_thumbnail($related_item['id'], 'tainacan-medium'),
+								'media_content_full' => '',
+								'media_title' => $related_item['title'],
+								'media_description' => $related_item['description'],
+								'class_slide_metadata' => 'hide-description hide-caption'
+							));
+					}
+				}
+			
+		
+				echo tainacan_get_the_media_component(
+					'tainacan-item-gallery-block_id-' . $block_id,
+					count($media_items_thumbnails) > 1 ? $media_items_thumbnails : [],
+					$media_items_main,
+					array(
+						'wrapper_attributes' => 'class="tainacan-media-component" ',
+						'class_main_div' => '',
+						'class_thumbs_div' => '',
+						'swiper_main_options' => array(
+							'navigation' => array(
+								'nextEl' => sprintf('.swiper-navigation-next_tainacan-item-gallery-block_id-%s-main', $block_id),
+								'prevEl' => sprintf('.swiper-navigation-prev_tainacan-item-gallery-block_id-%s-main', $block_id),
+								'preloadImages' => false,
+								'lazy' => true
+							)
+						),
+						'swiper_thumbs_options' => '',
+						'disable_lightbox' => false,
+						'hide_media_name' => true,
+						'hide_media_caption' => true,
+						'hide_media_description' => true,
+						'lightbox_has_light_background' => false
+					)
+				);
+
+				if ( $related_group['total_items'] > $max_items_per_gallery ) {
+					echo '<div class="wp-block-buttons">
+						<div class="wp-block-button">
+							<a class="wp-block-button__link" href="' . esc_url( get_permalink( $related_group['collection_id'] ) ) . '?metaquery[0][key]=' . esc_attr($related_group['metadata_id']) . '&metaquery[0][value][0]=' . esc_attr($item->get_ID()) . '&metaquery[0][compare]=IN">
+								' . sprintf( __('View all %s related items', 'tainacan'), $related_group['total_items'] ) . '
+							</a>
+						</div>
+					</div>';
+				}
+			}
+		}
+
+		echo '</section>';
+	}
+}
+add_action( 'tainacan-blocksy-single-item-after-document', 'zupi_artists_media_gallery' );
+
+
+/* Custom item related items for the Works Collection */
+function zupi_works_related_column() {
+
+	$collections_where_relationship_metadata_appear_as_column = [ 267, 20, 5 ];
+	
+	if ( in_array( tainacan_get_collection_id(), $collections_where_relationship_metadata_appear_as_column ) ) {
+
+		// Gets the current Item
+		$item = tainacan_get_item();
+		if ( !$item )
+			return;		
+
+		$item_metadata = $item->get_metadata();
+
+		if ( !count($item_metadata) )
+			return;
+
+		echo '<section class="tainacan-item-section tainacan-item-section--items-related-to-that">';
+
+		foreach ( $item_metadata as $item_metadatum ) {
+
+			$metadatum = $item_metadatum->get_metadatum();
+			
+			if ( $metadatum && $item_metadatum->get_value()  ) {
+				$metadata_type = $metadatum->get_metadata_type();
+				$options = $metadatum->get_metadata_type_options();
+	
+				if ( $metadata_type === 'Tainacan\Metadata_Types\Relationship' && count($item_metadatum->get_value()) ) {
+					echo '<h3 style="margin-bottom: -1rem;" class="tainacan-metadata-label">' . $metadatum->get_name() . '</h3>';
+					echo \Tainacan\Theme_Helper::get_instance()->get_tainacan_dynamic_items_list(array(
+						'collection_id' => $options['collection_id'],
+						'load_strategy' => 'selection',
+						'selected_items' => json_encode($item_metadatum->get_value()),
+						'layout' => 'grid',
+						'max_columns_count' => 1,
+						'image_size' => $metadatum->get_id() == 3527 ? 'tainacan-medium-full' : 'tainacan-medium'
+					));
+				}
+			}
+		}
+
+		echo '</section>';
+	}
+}
+add_action( 'tainacan-blocksy-single-item-after-items-related-to-this', 'zupi_works_related_column' );

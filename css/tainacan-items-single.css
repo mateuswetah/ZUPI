@@ -5,6 +5,7 @@
     }
     .tainacan-item-single-page .tainacan-item-section {
         max-width: 40vw;
+        max-width: min(40vw, 880px);
     }
     .tainacan-item-single-page .tainacan-item-single .tainacan-media-component {
         --document-height: auto !important;
@@ -32,6 +33,10 @@
     transition: opacity 0.3s ease;
 }
 
+.tainacan-item-section__items-related-to-this .wp-block-group__inner-container h3+p {
+    display: none;
+}
+
 .post-navigation [class*="nav-item"]:hover {
 	background: var(--paletteColor5, #f5f5f5);
 }
@@ -46,18 +51,51 @@
 	justify-content: space-between;
 }
 
-.ct-related-posts .ct-related-posts-items {
+.tainacan-item-section__metadata-thumbnail .tainacan-metadata-label {
+    display: none !important;
+    visibility: hidden;
+}
+
+/* Compound metadata inside relationship groups have simpler layout */
+.tainacan-item-single-page .tainacan-item-single .tainacan-relationship-group .tainacan-relationship-metadatum h5.label {
+    display: none;
+    visibility: hidden;
+}
+.tainacan-item-single-page .tainacan-item-single .tainacan-relationship-group .tainacan-relationship-metadatum>.tainacan-metadatum,
+.tainacan-item-single-page .tainacan-item-single .tainacan-relationship-group .tainacan-relationship-metadatum>.tainacan-metadatum .tainacan-compound-group {
+    padding: 0 !important;
+}
+
+/* Artists page does not show original media component */
+.single-tnc_col_5_item .tainacan-item-section.tainacan-item-section--gallery,
+.single-tnc_col_267_item .tainacan-item-section.tainacan-item-section--gallery {
+    display: none;
+    visibility: hidden;
+}
+
+/* Artists page does not show items related to this */
+.single-tnc_col_5_item .tainacan-item-section.tainacan-item-section--items-related-to-this {
+    display: none;
+    visibility: hidden;
+}
+
+/* Related itens in the Artists collection has more columns */
+.single-tnc_col_5_item .ct-related-posts .ct-related-posts-items {
     --grid-template-columns: repeat(8, 1fr);
 }
 
 @media screen and (max-width: 1200px) {
-    .ct-related-posts .ct-related-posts-items {
+    .single-tnc_col_5_item .ct-related-posts .ct-related-posts-items {
         --grid-template-columns: repeat(4, 1fr);
     }
 }
 @media screen and (max-width: 940px) {
-    .ct-related-posts .ct-related-posts-items {
+    .single-tnc_col_5_item .ct-related-posts .ct-related-posts-items {
         --grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Related items in Events collection are not squared */
+.single-tnc_col_1507_item .ct-related-posts .ct-related-posts-items .ct-image-container img {
+    aspect-ratio: 3/4 !important;
+}

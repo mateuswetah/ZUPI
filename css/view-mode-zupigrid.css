@@ -1,13 +1,13 @@
 .tainacan-zupi-grid-container {
     min-height: 50vh;
-    padding: 36px 0;
+    padding: 38px 0;
     display: -ms-grid;
     display: grid;
     grid-template-columns: repeat(auto-fill, max(389px, 25%));
     grid-gap: 42px;
     justify-content: flex-start;
-    margin-top: 5px;
-    border-top: 2px solid #cecdcd;
+    margin-top: 0px;
+    border-top: 1px solid #cecdcd;
     list-style: none;
     animation-name: appear;
     animation-duration: 0.5s;
@@ -103,6 +103,12 @@
     white-space: normal;
     font-weight: bold;
     color: inherit;
+}
+.tainacan-zupi-grid-container--2.tainacan-zupi-grid-container .metadata-title {
+    padding-top: 0.35rem;
+}
+.tainacan-zupi-grid-container--2.tainacan-zupi-grid-container .metadata-title h3 {
+    font-size: 1rem;
 }
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item .metadata-description p,
 .tainacan-zupi-grid-container .tainacan-zupi-grid-item a:hover .metadata-description p,
