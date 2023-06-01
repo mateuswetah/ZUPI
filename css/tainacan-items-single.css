@@ -62,8 +62,23 @@
     visibility: hidden;
 }
 .tainacan-item-single-page .tainacan-item-single .tainacan-relationship-group .tainacan-relationship-metadatum>.tainacan-metadatum,
-.tainacan-item-single-page .tainacan-item-single .tainacan-relationship-group .tainacan-relationship-metadatum>.tainacan-metadatum .tainacan-compound-group {
+.tainacan-item-single-page .tainacan-item-single .tainacan-relationship-group .tainacan-relationship-metadatum>.tainacan-metadatum .tainacan-compound-group,
+.tainacan-item-single-page .tainacan-item-single .tainacan-relationship-group .tainacan-relationship-metadatum>.tainacan-metadatum .tainacan-compound-group>.tainacan-metadatum {
     padding: 0 !important;
+}
+
+/* Compound metadata "dimensões" */
+.tainacan-item-single-page .metadata-slug-dimensoes.metadata-type-compound .tainacan-compound-group {
+    display: flex
+}
+.tainacan-item-single-page .metadata-slug-dimensoes.metadata-type-compound .tainacan-compound-group .metadata-type-numeric > p:after {
+    content: 'cm';
+}
+
+/* Compound groups are more discrete */
+.tainacan-item-single-page .tainacan-item-single .tainacan-item-section__metadata .tainacan-compound-group {
+    border-left: none;
+    padding-left: 0;
 }
 
 /* Artists page does not show original media component */
@@ -72,6 +87,15 @@
     display: none;
     visibility: hidden;
 }
+
+/* Instead it shows document created from relationships to Obras */
+@media screen and (min-width: 960px) {
+    .single-tnc_col_5_item .tainacan-item-single-page .tainacan-item-single .tainacan-item-section--document {
+        position: sticky;
+        top: 2rem;
+    }
+}
+
 
 /* Artists page does not show items related to this */
 .single-tnc_col_5_item .tainacan-item-section.tainacan-item-section--items-related-to-this {
@@ -98,4 +122,8 @@
 /* Related items in Events collection are not squared */
 .single-tnc_col_1507_item .ct-related-posts .ct-related-posts-items .ct-image-container img {
     aspect-ratio: 3/4 !important;
+}
+
+.ct-related-posts .related-entry-title {
+    margin-top: 2px;
 }

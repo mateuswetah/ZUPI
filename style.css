@@ -4,7 +4,7 @@
  * Author: wetah
  * Template: blocksy
  * Text Domain: zupi
- * Version: 0.0.36
+ * Version: 0.0.40
  */
 
 /* Styles related to the Tainacan plugin */
@@ -14,6 +14,6 @@
 /* Styles related to Tainacan view modes */
 @import url('./css/view-mode-zupigrid.css');
 
-a:not(.has-text-color):not(.has-link-color):visited {
+a:not(.has-text-color):not(.has-link-color):not(.ct-menu-link):not(.nav-item-prev):not(.nav-item-next):visited {
 	--linkInitialColor: #193C8E !important;
 }

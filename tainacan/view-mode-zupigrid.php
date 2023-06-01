@@ -17,8 +17,8 @@
 							<div class="skeleton"></div> 
 						</div>
 					<?php else : ?>
-						<div class="zupi-grid-item-thumbnail">
-							<?php echo '<img alt="', esc_attr_e('Imagem não definida', 'zupi'), '">'?>
+						<div class="zupi-grid-item-thumbnail placeholder">
+							<?php echo '<img src="' . get_stylesheet_directory_uri() .'/images/artist_placeholder.gif" alt="' . esc_attr('Imagem não definida', 'zupi') . '">'?>
 							<div class="skeleton"></div> 
 						</div>
 					<?php endif; ?>

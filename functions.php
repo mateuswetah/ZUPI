@@ -12,7 +12,7 @@ if (! defined('WP_DEBUG')) {
 }
 
 /** Child Theme version */
-const ZUPI_VERSION = '0.0.36';
+const ZUPI_VERSION = '0.0.40';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
@@ -264,7 +264,7 @@ function zupi_works_related_column() {
 						'selected_items' => json_encode($item_metadatum->get_value()),
 						'layout' => 'grid',
 						'max_columns_count' => 1,
-						'image_size' => $metadatum->get_id() == 3527 ? 'tainacan-medium-full' : 'tainacan-medium'
+						'image_size' => ($metadatum->get_id() == 3527 || $metadatum->get_id() == 4677) ? 'tainacan-medium-full' : 'tainacan-medium'
 					));
 				}
 			}
