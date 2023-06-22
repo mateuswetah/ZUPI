@@ -1,6 +1,6 @@
 @media only screen and (min-width: 961px) {
     .tainacan-item-single-page .tainacan-item-single {
-        grid-template-columns: auto auto 220px !important;
+        grid-template-columns: 1.25fr 1fr 220px !important;
         grid-template-areas: 'document metadata related' !important;
     }
     .tainacan-item-single-page .tainacan-item-section {
@@ -79,6 +79,16 @@
 .tainacan-item-single-page .tainacan-item-single .tainacan-item-section__metadata .tainacan-compound-group {
     border-left: none;
     padding-left: 0;
+}
+
+.tainacan-item-single-page .tainacan-item-section {
+    margin-bottom: 0;
+}
+
+/* Metadata Audio Description */
+.metadata-slug-audio-descricao audio {
+    display: block;
+    width: 100%;
 }
 
 /* Artists page does not show original media component */

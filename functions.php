@@ -12,11 +12,12 @@ if (! defined('WP_DEBUG')) {
 }
 
 /** Child Theme version */
-const ZUPI_VERSION = '0.0.40';
+const ZUPI_VERSION = '0.1.1';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'blocksy-child-style', get_stylesheet_directory_uri() . '/style.min.css', ZUPI_VERSION );
+	wp_enqueue_script( 'zupi-scripts', get_stylesheet_directory_uri() . '/js/scripts.js', array(), ZUPI_VERSION );
 });
 
 /**
@@ -274,3 +275,36 @@ function zupi_works_related_column() {
 	}
 }
 add_action( 'tainacan-blocksy-single-item-after-items-related-to-this', 'zupi_works_related_column' );
+
+/* Adds audio attachment to in the middle of metadata */
+function zupi_add_audiodescription_to_works($after, $metadata_section) {
+	$item = tainacan_get_item();
+
+	if ( !$item )
+		return $after;
+
+	$attachments = $item->get_attachments();
+	$audio_attachments = array_filter( $attachments, function($attachment) {
+		return get_post_mime_type($attachment) == "audio/mpeg" || get_post_mime_type($attachment) == "audio/wav" || get_post_mime_type($attachment) == "audio/ogg" || get_post_mime_type($attachment) == "audio/flac";
+	});
+
+	$output = '';
+	foreach($audio_attachments as $audio_attachment) {
+		$output .= '<div class="metadata-slug-audio-descricao tainacan-item-section__metadatum">
+			<h3 class="tainacan-metadata-label">Áudio descrição</h3>
+			<p class="tainacan-metadata-value">'. tainacan_get_attachment_as_html($audio_attachment->ID) . '</p>' . 	
+		'</div>';
+	}
+	return $after . $output;
+}
+add_filter( 'tainacan-get-metadata-section-as-html-after--id-' . \Tainacan\Entities\Metadata_Section::$default_section_slug, 'zupi_add_audiodescription_to_works', 2, 10 ); 
+
+/* Removes the audio attachment from the gallery list. The gallery component uses tainacan_get_the_attachment. Thats why in the filter above we fetch them directly from the item */
+function zupi_remove_audio_from_attachments_list($attachments, $item) {
+	$non_audio_attachments = array_filter( $attachments, function($attachment) {
+		return get_post_mime_type($attachment) != "audio/mpeg" && get_post_mime_type($attachment) != "audio/wav" && get_post_mime_type($attachment) != "audio/ogg" && get_post_mime_type($attachment) != "audio/flac";
+	});
+
+	return $non_audio_attachments;
+}
+add_filter('tainacan-get-the-attachments', 'zupi_remove_audio_from_attachments_list', 2, 12);
