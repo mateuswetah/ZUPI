@@ -107,10 +107,9 @@
 }
 
 
-/* Artists page does not show items related to this */
-.single-tnc_col_5_item .tainacan-item-section.tainacan-item-section--items-related-to-this {
-    display: none;
-    visibility: hidden;
+/* Artists page shows items related to this instead of the items related to "that" */
+.single-tnc_col_5_item .wp-block-tainacan-related-items {
+    margin-top: 0;
 }
 
 /* Related itens in the Artists collection has more columns */

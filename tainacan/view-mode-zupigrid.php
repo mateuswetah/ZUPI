@@ -1,6 +1,42 @@
 <?php
 	$is_in_grid_two = $request['view_mode'] === 'zupigrid2';
 	$is_in_grid_three = $request['view_mode'] === 'zupigrid3';
+
+	$metadata_objects = [];
+
+	if ( !$is_in_grid_two && !$is_in_grid_three ) {
+
+		$metadata_repository = \Tainacan\Repositories\Metadata::get_instance();
+		$is_repository_level = !isset($request['collection_id']);
+		
+		if ( !$is_repository_level ) {
+			$collection = tainacan_get_collection([ 'collection_id' => $request['collection_id'] ]);
+			$metadata_objects = $metadata_repository->fetch_by_collection(
+				$collection,
+				[
+					'posts_per_page' => 50,
+					// 'post_status' => 'publish'
+				],
+				'OBJECT'
+			);
+		} else {
+			$metadata_objects = $metadata_repository->fetch(
+				[ 
+					'meta_query' => [
+						[
+							'key'     => 'collection_id',
+							'value'   => 'default',
+							'compare' => '='
+						]
+					],
+					// 'post_status' => 'publish',
+					'posts_per_page' => 50,
+					'include_control_metadata_types' => true
+				],
+				'OBJECT'
+			);
+		}
+	}
 ?>
 
 <?php if ( have_posts() ) : ?>
@@ -31,6 +67,22 @@
 					<div class="<?php echo $title_class; ?>">
 						<h3><?php the_title(); ?></h3>
 					</div>
+
+					<?php if ( !$is_in_grid_two && !$is_in_grid_three ) : ?>
+						<div class="metadata-description">
+							<?php
+								foreach($metadata_objects as $metadata_object) {
+									if ( $metadata_object->get_metadata_type() === 'Tainacan\Metadata_Types\Relationship' ) {
+										$second_metadata_value = tainacan_get_the_metadata([ 'metadata' => $metadata_object ]);
+										if ( !empty($second_metadata_value) ) {
+											echo $second_metadata_value;
+											break;
+										}
+									}
+								}
+							?>
+						</div>
+					<?php endif; ?>
 				</a>
 			</li>	
 		

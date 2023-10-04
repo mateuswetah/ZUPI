@@ -12,7 +12,7 @@ if (! defined('WP_DEBUG')) {
 }
 
 /** Child Theme version */
-const ZUPI_VERSION = '0.1.1';
+const ZUPI_VERSION = '0.1.2';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
@@ -233,7 +233,7 @@ add_action( 'tainacan-blocksy-single-item-after-document', 'zupi_artists_media_g
 /* Custom item related items for the Works Collection */
 function zupi_works_related_column() {
 
-	$collections_where_relationship_metadata_appear_as_column = [ 267, 20, 5 ];
+	$collections_where_relationship_metadata_appear_as_column = [ 267, 20 ];
 	
 	if ( in_array( tainacan_get_collection_id(), $collections_where_relationship_metadata_appear_as_column ) ) {
 
