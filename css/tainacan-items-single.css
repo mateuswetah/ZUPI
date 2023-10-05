@@ -136,3 +136,13 @@
 .ct-related-posts .related-entry-title {
     margin-top: 2px;
 }
+
+.metadata-type-ainacan_url_plugin_metadata_type .tainacan-metadata-label,
+.metadata-type-tainacan_url_plugin_metadata_type .tainacan-metadata-label {
+    display: none !important;
+    visibility: hidden;
+}
+.metadata-type-ainacan_url_plugin_metadata_type .wp-block-buttons,
+.metadata-type-tainacan_url_plugin_metadata_type .wp-block-buttons {
+    margin-bottom: 1rem;
+}

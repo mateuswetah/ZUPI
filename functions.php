@@ -233,7 +233,7 @@ add_action( 'tainacan-blocksy-single-item-after-document', 'zupi_artists_media_g
 /* Custom item related items for the Works Collection */
 function zupi_works_related_column() {
 
-	$collections_where_relationship_metadata_appear_as_column = [ 267, 20 ];
+	$collections_where_relationship_metadata_appear_as_column = [ 267, 20, 5054 ];
 	
 	if ( in_array( tainacan_get_collection_id(), $collections_where_relationship_metadata_appear_as_column ) ) {
 
@@ -257,7 +257,13 @@ function zupi_works_related_column() {
 				$metadata_type = $metadatum->get_metadata_type();
 				$options = $metadatum->get_metadata_type_options();
 	
-				if ( $metadata_type === 'Tainacan\Metadata_Types\Relationship' && count($item_metadatum->get_value()) ) {
+				if (
+						$metadata_type === 'Tainacan\Metadata_Types\Relationship' &&
+						(
+							is_array($item_metadatum->get_value()) && count($item_metadatum->get_value()) ||
+							!empty($item_metadatum->get_value())
+						)
+				) {
 					echo '<h3 style="margin-bottom: -1rem;" class="tainacan-metadata-label">' . $metadatum->get_name() . '</h3>';
 					echo \Tainacan\Theme_Helper::get_instance()->get_tainacan_dynamic_items_list(array(
 						'collection_id' => $options['collection_id'],
