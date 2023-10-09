@@ -1,6 +1,6 @@
 {
   "name": "zupi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Tema do Acervo Zupi",
   "main": "index.js",
   "scripts": {
