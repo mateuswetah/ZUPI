@@ -270,7 +270,7 @@ function zupi_works_related_column() {
 						'load_strategy' => 'selection',
 						'selected_items' => json_encode($item_metadatum->get_value()),
 						'layout' => 'grid',
-						'max_columns_count' => tainacan_get_collection_id() == 5054 ? 3 : 1,
+						'max_columns_count' => tainacan_get_collection_id() == 5054 ? 4 : 1,
 						'image_size' => ($metadatum->get_id() == 3527 || $metadatum->get_id() == 4677) ? 'tainacan-medium-full' : 'tainacan-medium'
 					));
 				}
