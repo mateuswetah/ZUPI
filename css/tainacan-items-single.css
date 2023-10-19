@@ -147,6 +147,12 @@
     margin-bottom: 1rem;
 }
 
+/* Forces artists thumbnail to be always square */
+.single-tnc_col_5_item .tainacan-item-single-page .tainacan-item-section__metadata-thumbnail img {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
 /* Revista collection shows related items in a different way */
 .single-tnc_col_5054_item .tainacan-item-single-page .metadata-slug-artistas {
     display: none !important;
