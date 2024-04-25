@@ -137,11 +137,13 @@
     margin-top: 2px;
 }
 
+.metadata-type-url .tainacan-metadata-label,
 .metadata-type-ainacan_url_plugin_metadata_type .tainacan-metadata-label,
 .metadata-type-tainacan_url_plugin_metadata_type .tainacan-metadata-label {
     display: none !important;
     visibility: hidden;
 }
+.metadata-type-url .wp-block-buttons,
 .metadata-type-ainacan_url_plugin_metadata_type .wp-block-buttons,
 .metadata-type-tainacan_url_plugin_metadata_type .wp-block-buttons {
     margin-bottom: 1rem;
@@ -151,6 +153,7 @@
 .single-tnc_col_5_item .tainacan-item-single-page .tainacan-item-section__metadata-thumbnail img {
     aspect-ratio: 1/1;
     object-fit: cover;
+    max-width: 182px;
 }
 
 /* Revista collection shows related items in a different way */

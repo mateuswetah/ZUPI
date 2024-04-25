@@ -38,7 +38,7 @@
 @media only screen and (min-width: 768px) {
 	.tainacan-modal,
 	.theme-items-list {
-		--tainacan-filter-menu-width-theme: 210px;
+		--tainacan-filter-menu-width-theme: 210px !important;
 	}
 	/* Adding border to filters list */
 	.theme-items-list #filters-modal .modal-content #filters-items-list {
