@@ -6,7 +6,15 @@ const performWhenDocumentIsLoaded = callback => {
         document.addEventListener('DOMContentLoaded', callback, false);
 }
 
+function updatePlaceholderFiles() {
+    wp.hooks.addFilter('tainacan_get_the_mime_type_icon', 'zupi' , (imageSrc, documentType, size) => {
+        return zupi.images_directory + '/artist_placeholder.gif';
+    });
+};
+
 performWhenDocumentIsLoaded(() => {
+
+    updatePlaceholderFiles();
 
     relatedItems = document.getElementsByClassName('wp-block-tainacan-related-items');
 

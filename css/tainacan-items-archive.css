@@ -66,13 +66,17 @@
 	.filter-tags-list .swiper-wrapper {
 		margin-bottom: 4px;
 	}
+	.entry-content:not(.ct-container) .theme-items-list:not(.is-fullscreen) {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 @media only screen and (max-width: 1024px) {
 	#tainacanFiltersButton,
 	#tainacanFiltersButton .is-hidden-touch {
 		display: inline-block !important;
 		visibility: visible !important;
-	}	
+	}
 }
 
 .tainacan-modal #filters-modal .modal-content h3,

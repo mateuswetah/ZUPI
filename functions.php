@@ -12,12 +12,18 @@ if (! defined('WP_DEBUG')) {
 }
 
 /** Child Theme version */
-const ZUPI_VERSION = '0.1.6';
+const ZUPI_VERSION = '0.1.9';
 
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'blocksy-child-style', get_stylesheet_directory_uri() . '/style.min.css', ZUPI_VERSION );
-	wp_enqueue_script( 'zupi-scripts', get_stylesheet_directory_uri() . '/js/scripts.js', array(), ZUPI_VERSION );
+
+	wp_enqueue_script( 'zupi-script', get_stylesheet_directory_uri() . '/js/scripts.js', array(), ZUPI_VERSION );
+	$settings = array(
+		'images_directory' => get_stylesheet_directory_uri() . '/images'
+	);
+	wp_localize_script( 'zupi-script', 'zupi', $settings );
+	
 });
 
 /**
